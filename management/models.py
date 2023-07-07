@@ -9,3 +9,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # 作成日時（作成時に自動設定される）
     def __str__(self):
         return self.name
+
+class Submission(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE) # 提出者
+    task = models.ForeignKey(Task, on_delete=models.CASCADE) # 対象のタスク
