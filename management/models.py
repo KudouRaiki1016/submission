@@ -7,3 +7,5 @@ class Task(models.Model):
     text = models.TextField() # テキスト（作成者が入力するタスクに関するテキスト）
     closing = models.DateTimeField() # 締切日時（作成者が設定する）
     created_at = models.DateTimeField(auto_now_add=True) # 作成日時（作成時に自動設定される）
+    def __str__(self):
+        return self.name

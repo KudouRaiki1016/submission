@@ -1,1 +1,25 @@
-Hello World
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>提出物一覧</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'management/css/top_page.css' %}">
+</head>
+<body>
+    <h1>提出物一覧</h1>
+    <table>
+        <tr>
+            <th>タイトル</th>
+            <th>出された日付</th>
+            <th>提出期限</th>
+        </tr>
+        {% for obj in object_list %}
+            <tr>
+                <td><a href="#">{{ obj.name }}</a></td>
+                <td>{{ obj.created_at.date.year }}/{{ obj.created_at.date.month }}/{{ obj.created_at.date.day }}</td>
+                <td>{{ obj.closing.date.year }}/{{ obj.closing.date.month }}/{{ obj.closing.date.day }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
