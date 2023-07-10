@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Task(models.Model):
+    # タスクの形式を定義
     TYPE_CHOICES = (
         ('text', 'テキスト'),
         ('checkbox', 'チェックボックス'),
@@ -14,14 +15,14 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # 作成日時（自動設定）
     text = models.TextField() # 課題の説明（講師が入力）
     # チェックボックス形式で提出させる場合
-    checkboxes = models.ManyToManyField('CheckboxOption', blank=True)
+    checkboxes = models.ManyToManyField('CheckboxOption', blank=True) # チェックボックスを詰めるフィールド
 
     def __str__(self):
         return self.name
 
 class CheckboxOption(models.Model):
-    append_task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    label = models.CharField(max_length=100)
+    append_task = models.ForeignKey(Task, on_delete=models.CASCADE) # 対象タスク
+    label = models.CharField(max_length=100) # ラベル（名前）
 
     def __str__(self):
         return self.label
