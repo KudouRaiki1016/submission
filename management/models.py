@@ -12,7 +12,7 @@ class Task(models.Model):
     task_type = models.CharField(max_length=20, choices=TYPE_CHOICES) # 課題の種類
     closing = models.DateTimeField() # 締切日時（講師が設定）
     created_at = models.DateTimeField(auto_now_add=True) # 作成日時（自動設定）
-    description = models.TextField() # 課題の説明（講師が入力）
+    text = models.TextField() # 課題の説明（講師が入力）
     # チェックボックス形式で提出させる場合
     checkboxes = models.ManyToManyField('CheckboxOption', blank=True)
 
@@ -20,7 +20,7 @@ class Task(models.Model):
         return self.name
 
 class CheckboxOption(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    append_task = models.ForeignKey(Task, on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
 
     def __str__(self):
